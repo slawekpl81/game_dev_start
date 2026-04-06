@@ -5,6 +5,8 @@ project(game_dev_1)
 
 set(CMAKE_CXX_STANDARD 23)
 
+
+
 add_subdirectory(libs/slk_raylib_basics)
 
 include(FetchContent)
@@ -15,6 +17,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-add_executable(game_dev_1 main.cpp)
+add_executable(game_dev_1 main.cpp src/Balls.cpp)
+target_include_directories(game_dev_1 PRIVATE include)
+target_include_directories(game_dev_1 PRIVATE src)
 target_link_libraries(game_dev_1 PRIVATE raylib)
 target_link_libraries(game_dev_1 PRIVATE slk_raylib_basics)

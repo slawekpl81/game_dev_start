@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-#include <vector>
 
 #include "raylib.h"
 
+#include "Balls.hpp"
 #include "basics.hpp"
 
 int main() {
@@ -21,6 +21,8 @@ int main() {
 
   DebugText debug_text;
   //--------------------------------------------------------------------------------------
+  BallsSystem balls_system;
+  //--------------------------------------------------------------------------------------
 
   // Main game loop
   while (!WindowShouldClose()) // Detect window close button or ESC key
@@ -28,6 +30,12 @@ int main() {
     // Update
     //----------------------------------------------------------------------------------
     // TODO: Update your variables here
+    balls_system.update();
+    balls_system.remove_balls_out_of_screen();
+    balls_system.bounce_from_borders_of_screen();
+    if (balls_system.get_number_of_balls() < 10) {
+      balls_system.add_random_ball();
+    }
     //----------------------------------------------------------------------------------
 
     // Draw
@@ -35,6 +43,7 @@ int main() {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
+    balls_system.draw();
 
     // DrawText("cool window!", 190, 200, 20, LIGHTGRAY);
 
