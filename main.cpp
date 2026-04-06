@@ -19,7 +19,7 @@ int main() {
 
   SetTargetFPS(60); // Set our game to run at 60 frames-per-second
 
-  std::vector<std::string> debug_text;
+  DebugText debug_text;
   //--------------------------------------------------------------------------------------
 
   // Main game loop
@@ -36,17 +36,15 @@ int main() {
 
     ClearBackground(RAYWHITE);
 
-    draw_debug_text(debug_text);
-
     // DrawText("cool window!", 190, 200, 20, LIGHTGRAY);
 
     EndDrawing();
     //----------------------------------------------------------------------------------
     auto frame_time = GetFrameTime();
     auto fps = GetFPS();
-    debug_text.clear();
-    debug_text.push_back("Time: " + std::to_string(frame_time));
-    debug_text.push_back("FPS: " + std::to_string(fps));
+    debug_text.add_text("Time: " + std::to_string(frame_time));
+    debug_text.add_text("FPS: " + std::to_string(fps));
+    debug_text.draw();
   }
 
   // De-Initialization
